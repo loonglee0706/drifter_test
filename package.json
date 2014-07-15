@@ -6,5 +6,8 @@
     "express" : "*",
     "redis" : "*",
     "body-parser" : "*"
+  },
+  "devDependencies" : {
+  	"request" : "*"
   }
 }
