@@ -54,5 +54,12 @@ app.get('/', function(req, res){
 	});
 })
 
+// throw the bottle into the sea
+app.post('/back', function (req, res) {
+	redis.throwBack(req.body, function (result) {
+		res.json(result);
+	});
+})
+
 app.listen(3000);
 console.log('listen : 3000');
