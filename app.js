@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var redis = require('./models/redis.js');
+var mongodb = require('./models/mongodb.js');
 
 var app = express();
 //app.use(express.bodyParser());
@@ -51,6 +52,9 @@ app.get('/', function(req, res){
 	}
 	redis.pick(req.query, function(result){
 		res.json(result);
+		if (result.code === 1) {
+			mongodb.save(req.query.user, result.msg);
+		}
 	});
 })
 
@@ -59,6 +63,22 @@ app.post('/back', function (req, res) {
 	redis.throwBack(req.body, function (result) {
 		res.json(result);
 	});
+})
+
+//get all drift bottles of a user
+// GET "/user/lee"
+app.get("/user/:user", function (req, res) {
+	mongodb.getAll(req.params.user, function (result) {
+		res.json(result);
+	})
+})
+
+//get bottle detail by bottle _id
+//GET /bottle/23423t349nnfdffif2c3
+app.get("/bottle/:id", function (req, res) {
+	mongodb.getOne(req.params._id, function (result) {
+		res.json(result);
+	})
 })
 
 app.listen(3000);

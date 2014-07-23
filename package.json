@@ -5,7 +5,8 @@
   "dependencies" : {
     "express" : "*",
     "redis" : "*",
-    "body-parser" : "*"
+    "body-parser" : "*",
+    "mongoose" : "*"
   },
   "devDependencies" : {
   	"request" : "*"
