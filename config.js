@@ -1,3 +1,3 @@
 module.exports = {
-	db : "mongodb://localhost/drifter"
+	db : "mongodb://Lee:ptwq7ygi@kahana.mongohq.com:10060/drifter"
 }

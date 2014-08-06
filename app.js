@@ -81,5 +81,23 @@ app.get("/bottle/:id", function (req, res) {
 	})
 })
 
+//reply drift bottle with special id
+//POST user=*****&content=*****[&time=*****]
+app.post('/reply/:_id', function (req, res) {
+	if (!(req.body.user && req.body.content)) {
+		return callback({code : 0, msg : "回复信息不完整"});
+	}
+	mongodb.reply(req.params._id, req.body, function (result) {
+		res.json(result);
+	})
+})
+
+//remove bottle
+app.get('delete/:_id', function (req, res) {
+	mongodb.delete(req.params._id, function (result) {
+		res.json(result);
+	})
+})
+
 app.listen(3000);
 console.log('listen : 3000');
